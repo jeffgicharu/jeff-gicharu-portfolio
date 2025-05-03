@@ -1,7 +1,7 @@
 // src/app/page.tsx
 
-import Link from 'next/link'; // Keep Link import
-import Image from 'next/image'; // Keep Image import
+import Link from 'next/link';
+import Image from 'next/image'; // Ensure Image is imported
 
 export default function Home() {
   // Define skills array
@@ -18,9 +18,10 @@ export default function Home() {
     {
       title: "Personal Portfolio Website",
       description: "This website! Built with Next.js, TypeScript, and Tailwind CSS to showcase my skills and projects. Features responsive design and clean code.",
-      imageUrl: "/images/portfolio-screenshot.png", // Placeholder image path
-      liveUrl: "#", // Link to itself (or deployed URL later)
-      repoUrl: "https://github.com/jeffgicharu/jeff-gicharu-portfolio", // Using your username and project name
+      // *** Ensure this path matches the image you create in public/images/ ***
+      imageUrl: "/images/portfolio-screenshot.png",
+      liveUrl: "#",
+      repoUrl: "https://github.com/jeffgicharu/jeff-gicharu-portfolio",
       tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     },
     // Add Project 2 (Data Dashboard) here later
@@ -29,8 +30,7 @@ export default function Home() {
   // Define contact info
   const contactEmail = "jkaharu2970@gmail.com";
   const githubUrl = "https://github.com/jeffgicharu";
-  // *** UPDATED LinkedIn URL ***
-  const linkedinUrl = "https://www.linkedin.com/in/jeff-gicharu-0924a4217/"; // Your actual LinkedIn URL
+  const linkedinUrl = "https://www.linkedin.com/in/jeff-gicharu-0924a4217/";
 
   return (
     // Main container
@@ -54,11 +54,11 @@ export default function Home() {
 
       {/* About Me Section */}
       <section id="about" className="w-full max-w-4xl text-center mb-16 md:mb-24">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           About Me
         </h2>
         <div className="text-base md:text-lg text-gray-700 dark:text-gray-300 space-y-4 leading-relaxed">
-          <p>
+           <p>
             Hello! I'm Jeff Gicharu, a passionate web developer from Kenya, specializing in building modern, responsive web applications with React and Next.js.
           </p>
           <p>
@@ -99,10 +99,19 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {projects.map((project) => (
             <div key={project.title} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col">
-              <div className="w-full h-48 bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                 <span className="text-gray-500 dark:text-gray-400">Image Placeholder</span>
-                 {/* <Image src={project.imageUrl} alt={`${project.title} screenshot`} width={500} height={300} className="object-cover w-full h-full" /> */}
+              {/* *** UPDATED: Use Next/Image *** */}
+              <div className="relative w-full h-48"> {/* Added relative positioning */}
+                 <Image
+                   src={project.imageUrl}
+                   alt={`${project.title} screenshot`}
+                   layout="fill" // Makes image fill the container
+                   objectFit="cover" // Scales image nicely, may crop
+                   // Optional: Add placeholder blur if needed later
+                   // placeholder="blur"
+                   // blurDataURL="data:..."
+                 />
               </div>
+              {/* Project Content */}
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{project.description}</p>
@@ -128,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="w-full max-w-4xl text-center pb-16 md:pb-24"> {/* Added padding-bottom */}
+      <section id="contact" className="w-full max-w-4xl text-center pb-16 md:pb-24">
          <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Get In Touch
         </h2>
@@ -136,23 +145,18 @@ export default function Home() {
           I'm currently available for freelance opportunities. Feel free to reach out!
         </p>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
-          {/* Email Link */}
           <a
             href={`mailto:${contactEmail}`}
             className="inline-block bg-green-600 text-white text-lg font-semibold py-3 px-8 rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors duration-200"
           >
             Email Me
           </a>
-           {/* Social Links */}
            <div className="flex space-x-4">
              <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
-               {/* Replace with GitHub Icon later */}
                <span className="text-sm font-medium">GitHub</span>
              </a>
-             {/* Conditionally render LinkedIn link */}
              {linkedinUrl.startsWith('https://') && (
                 <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
-                  {/* Replace with LinkedIn Icon later */}
                   <span className="text-sm font-medium">LinkedIn</span>
                 </a>
              )}
