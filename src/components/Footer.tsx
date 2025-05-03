@@ -1,6 +1,7 @@
 // src/components/Footer.tsx
 import React from 'react';
-import Link from 'next/link'; // Optional: if you want links in the footer
+// *** Removed unused Link import ***
+// import Link from 'next/link';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear(); // Get the current year dynamically

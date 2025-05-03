@@ -48,7 +48,7 @@ export default function Home() {
       title: "Personal Portfolio Website",
       description: "This website! Built with Next.js, TypeScript, and Tailwind CSS to showcase my skills and projects. Features responsive design and clean code.",
       imageUrl: "/images/portfolio-screenshot.png",
-      liveUrl: "#",
+      liveUrl: "#", // Remember to update this after successful deployment
       repoUrl: "https://github.com/jeffgicharu/jeff-gicharu-portfolio",
       tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     },
@@ -59,17 +59,13 @@ export default function Home() {
   const githubUrl = "https://github.com/jeffgicharu";
   const linkedinUrl = "https://www.linkedin.com/in/jeff-gicharu-0924a4217/";
 
-  // Accent color values (for reference or non-Tailwind use)
-  const accentColorValue = "teal"; // e.g., teal, blue, indigo
-  const accentColorShade = 600;
-  const accentColorHoverShade = 700;
-  const accentColorDarkHoverShade = 500;
+  // *** Removed unused accent color variables ***
 
   return (
     // Main container
     <main className="flex min-h-screen flex-col items-center p-4 md:p-12 lg:p-24">
 
-      {/* Hero Section - Fixed Button Style */}
+      {/* Hero Section */}
       <section id="hero" className="text-center w-full max-w-4xl pt-16 md:pt-24 mb-16 md:mb-24">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900 dark:text-white">
           Jeff Gicharu
@@ -79,33 +75,33 @@ export default function Home() {
         </p>
         <Link
           href="/#projects"
-          // *** Fixed Hero Button Styles - Using full class names ***
           className="inline-block bg-teal-600 text-white text-lg font-semibold py-3 px-8 rounded-md shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-105"
         >
           View My Work
         </Link>
       </section>
 
-      {/* About Me Section (remains the same) */}
+      {/* About Me Section - Fixed unescaped entities */}
       <section id="about" className="w-full max-w-4xl text-center mb-16 md:mb-24">
          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
           About Me
         </h2>
         <div className="text-base md:text-lg text-gray-700 dark:text-gray-300 space-y-4 leading-relaxed">
-           {/* Paragraphs remain the same */}
            <p>
-            Hello! I'm Jeff Gicharu, a passionate web developer from Kenya, specializing in building modern, responsive web applications with React and Next.js.
+             {/* Fixed: I'm -> I&apos;m */}
+             Hello! I&apos;m Jeff Gicharu, a passionate web developer from Kenya, specializing in building modern, responsive web applications with React and Next.js.
           </p>
           <p>
             With a strong foundation in software development principles from my Bachelor of Science in Computer Technology at Jomo Kenyatta University of Agriculture and Technology (JKUAT), I have a keen interest in creating engaging user experiences on the web.
           </p>
           <p>
-            I thrive on solving problems and am committed to writing clean, efficient code and delivering high-quality results. Whether it's building websites or complex web applications, I'm excited to leverage the power of modern JavaScript frameworks to create impactful solutions.
+            {/* Fixed: I'm -> I&apos;m */}
+            I thrive on solving problems and am committed to writing clean, efficient code and delivering high-quality results. Whether it&apos;s building websites or complex web applications, I&apos;m excited to leverage the power of modern JavaScript frameworks to create impactful solutions.
           </p>
         </div>
       </section>
 
-      {/* Skills Section - Fixed Icon Color */}
+      {/* Skills Section */}
       <section id="skills" className="w-full max-w-4xl text-center mb-16 md:mb-24">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-gray-900 dark:text-white">
           Skills
@@ -117,7 +113,6 @@ export default function Home() {
               <ul className="space-y-3 text-left">
                 {items.map((skill) => (
                   <li key={skill.name} className="flex items-center text-gray-600 dark:text-gray-300">
-                    {/* *** Fixed Icon Color - Using full class names *** */}
                     <skill.icon className="w-5 h-5 mr-3 flex-shrink-0 text-teal-600 dark:text-teal-500" />
                     <span>{skill.name}</span>
                   </li>
@@ -128,7 +123,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section - Fixed Link Styles */}
+      {/* Projects Section */}
       <section id="projects" className="w-full max-w-5xl text-center mb-16 md:mb-24">
         <h2 className="text-3xl md:text-4xl font-bold mb-10 text-gray-900 dark:text-white">
           Projects
@@ -155,7 +150,6 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="mt-auto flex justify-start space-x-4">
-                   {/* *** Fixed Project Link Styles - Using full class names *** */}
                   <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 dark:hover:text-teal-500 font-medium transition-colors duration-200">
                     Live Demo
                   </Link>
@@ -169,16 +163,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section - Fixed Button and Link Styles */}
+      {/* Contact Section - Fixed unescaped entities */}
       <section id="contact" className="w-full max-w-4xl text-center pb-16 md:pb-24">
          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
           Get In Touch
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          I'm currently available for freelance opportunities. Feel free to reach out!
+          {/* Fixed: I'm -> I&apos;m */}
+          I&apos;m currently available for freelance opportunities. Feel free to reach out!
         </p>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
-          {/* *** Fixed Email Button Styles - Using full class names *** */}
           <a
             href={`mailto:${contactEmail}`}
             className="inline-flex items-center bg-teal-600 text-white text-lg font-semibold py-3 px-8 rounded-md shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition-all duration-300 transform hover:scale-105"
@@ -186,7 +180,6 @@ export default function Home() {
             <MdEmail className="w-5 h-5 mr-2" />
             Email Me
           </a>
-           {/* *** Fixed Social Link Styles - Using full class names *** */}
            <div className="flex space-x-6">
              <a href={githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="text-gray-500 hover:text-teal-600 dark:hover:text-teal-500 transition-colors duration-200 transform hover:scale-110">
                <FaGithub className="w-7 h-7" />
