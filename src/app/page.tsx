@@ -42,24 +42,25 @@ export default function Home() {
     ]
   };
 
-  // Define projects data (remains the same)
+  // Define projects data
   const projects = [
     {
       title: "Personal Portfolio Website",
       description: "This website! Built with Next.js, TypeScript, and Tailwind CSS to showcase my skills and projects. Features responsive design and clean code.",
       imageUrl: "/images/portfolio-screenshot.png",
-      liveUrl: "#", // Remember to update this after successful deployment
+      // *** UPDATED liveUrl with Vercel deployment link ***
+      liveUrl: "https://jeff-gicharu-portfolio-3ip5.vercel.app",
       repoUrl: "https://github.com/jeffgicharu/jeff-gicharu-portfolio",
       tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     },
+    // Add Project 2 (Data Dashboard) here later
   ];
 
-  // Define contact info (remains the same)
+  // Define contact info
   const contactEmail = "jkaharu2970@gmail.com";
   const githubUrl = "https://github.com/jeffgicharu";
   const linkedinUrl = "https://www.linkedin.com/in/jeff-gicharu-0924a4217/";
 
-  // *** Removed unused accent color variables ***
 
   return (
     // Main container
@@ -81,21 +82,19 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* About Me Section - Fixed unescaped entities */}
+      {/* About Me Section */}
       <section id="about" className="w-full max-w-4xl text-center mb-16 md:mb-24">
          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
           About Me
         </h2>
         <div className="text-base md:text-lg text-gray-700 dark:text-gray-300 space-y-4 leading-relaxed">
            <p>
-             {/* Fixed: I'm -> I&apos;m */}
              Hello! I&apos;m Jeff Gicharu, a passionate web developer from Kenya, specializing in building modern, responsive web applications with React and Next.js.
           </p>
           <p>
             With a strong foundation in software development principles from my Bachelor of Science in Computer Technology at Jomo Kenyatta University of Agriculture and Technology (JKUAT), I have a keen interest in creating engaging user experiences on the web.
           </p>
           <p>
-            {/* Fixed: I'm -> I&apos;m */}
             I thrive on solving problems and am committed to writing clean, efficient code and delivering high-quality results. Whether it&apos;s building websites or complex web applications, I&apos;m excited to leverage the power of modern JavaScript frameworks to create impactful solutions.
           </p>
         </div>
@@ -163,13 +162,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section - Fixed unescaped entities */}
+      {/* Contact Section */}
       <section id="contact" className="w-full max-w-4xl text-center pb-16 md:pb-24">
          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
           Get In Touch
         </h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-          {/* Fixed: I'm -> I&apos;m */}
           I&apos;m currently available for freelance opportunities. Feel free to reach out!
         </p>
         <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
