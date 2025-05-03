@@ -1,10 +1,10 @@
 // src/app/page.tsx
 
 import Link from 'next/link'; // Keep Link import
-import Image from 'next/image'; // Import Image for project screenshots
+import Image from 'next/image'; // Keep Image import
 
 export default function Home() {
-  // Define skills array for easier management
+  // Define skills array
   const skills = {
     Languages: ["JavaScript (ES6+)", "HTML5", "CSS3"],
     Frameworks: ["React", "Next.js"],
@@ -13,20 +13,24 @@ export default function Home() {
     Concepts: ["Responsive Design", "API Integration", "Version Control", "Basic Accessibility", "Web Performance Basics"]
   };
 
-  // Define initial projects data (will expand later)
+  // Define projects data
   const projects = [
     {
       title: "Personal Portfolio Website",
       description: "This website! Built with Next.js, TypeScript, and Tailwind CSS to showcase my skills and projects. Features responsive design and clean code.",
       imageUrl: "/images/portfolio-screenshot.png", // Placeholder image path
       liveUrl: "#", // Link to itself (or deployed URL later)
-      // *** UPDATED repoUrl ***
       repoUrl: "https://github.com/jeffgicharu/jeff-gicharu-portfolio", // Using your username and project name
       tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     },
     // Add Project 2 (Data Dashboard) here later
   ];
 
+  // Define contact info
+  const contactEmail = "jkaharu2970@gmail.com";
+  const githubUrl = "https://github.com/jeffgicharu";
+  // *** UPDATED LinkedIn URL ***
+  const linkedinUrl = "https://www.linkedin.com/in/jeff-gicharu-0924a4217/"; // Your actual LinkedIn URL
 
   return (
     // Main container
@@ -88,33 +92,20 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="w-full max-w-5xl text-center mb-16 md:mb-24"> {/* Increased max-width */}
+      <section id="projects" className="w-full max-w-5xl text-center mb-16 md:mb-24">
         <h2 className="text-3xl md:text-4xl font-bold mb-10">
           Projects
         </h2>
-        {/* Grid container for project cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {projects.map((project) => (
-            <div key={project.title} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col"> {/* Added flex flex-col */}
-              {/* Project Image Placeholder */}
+            <div key={project.title} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col">
               <div className="w-full h-48 bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                 {/* Replace with Next/Image later */}
                  <span className="text-gray-500 dark:text-gray-400">Image Placeholder</span>
-                 {/* Example using Next/Image (requires setup in public folder):
-                 <Image
-                   src={project.imageUrl}
-                   alt={`${project.title} screenshot`}
-                   width={500} // Adjust as needed
-                   height={300} // Adjust as needed
-                   className="object-cover w-full h-full" // Ensure image covers the area
-                 />
-                 */}
+                 {/* <Image src={project.imageUrl} alt={`${project.title} screenshot`} width={500} height={300} className="object-cover w-full h-full" /> */}
               </div>
-              {/* Project Content */}
-              <div className="p-6 flex flex-col flex-grow"> {/* Added flex-grow */}
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{project.description}</p> {/* Added flex-grow */}
-                {/* Tech Tags */}
+                <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{project.description}</p>
                 <div className="mb-4">
                   {project.tags.map(tag => (
                     <span key={tag} className="inline-block bg-gray-200 dark:bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 dark:text-gray-200 mr-2 mb-2">
@@ -122,8 +113,7 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-                {/* Links */}
-                <div className="mt-auto flex justify-start space-x-4"> {/* Pushes links to bottom */}
+                <div className="mt-auto flex justify-start space-x-4">
                   <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 dark:hover:text-blue-400 font-medium">
                     Live Demo
                   </Link>
@@ -137,7 +127,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section will go below here */}
+      {/* Contact Section */}
+      <section id="contact" className="w-full max-w-4xl text-center pb-16 md:pb-24"> {/* Added padding-bottom */}
+         <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          Get In Touch
+        </h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+          I'm currently available for freelance opportunities. Feel free to reach out!
+        </p>
+        <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+          {/* Email Link */}
+          <a
+            href={`mailto:${contactEmail}`}
+            className="inline-block bg-green-600 text-white text-lg font-semibold py-3 px-8 rounded-md shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-colors duration-200"
+          >
+            Email Me
+          </a>
+           {/* Social Links */}
+           <div className="flex space-x-4">
+             <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
+               {/* Replace with GitHub Icon later */}
+               <span className="text-sm font-medium">GitHub</span>
+             </a>
+             {/* Conditionally render LinkedIn link */}
+             {linkedinUrl.startsWith('https://') && (
+                <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
+                  {/* Replace with LinkedIn Icon later */}
+                  <span className="text-sm font-medium">LinkedIn</span>
+                </a>
+             )}
+           </div>
+        </div>
+      </section>
 
     </main>
   );
