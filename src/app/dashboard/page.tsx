@@ -3,8 +3,8 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import ControlsBar from '@/components/dashboard/ControlsBar';
-import CountryGrid from '@/components/dashboard/CountryGrid'; // Import CountryGrid
-import SkeletonCard from '@/components/dashboard/SkeletonCard'; // Import SkeletonCard
+import CountryGrid from '@/components/dashboard/CountryGrid';
+import SkeletonCard from '@/components/dashboard/SkeletonCard';
 
 // Define the structure of a Country object
 interface Country {
@@ -41,14 +41,21 @@ export default function DashboardPage() {
     const fetchCountries = async () => {
       setIsLoading(true);
       setError(null);
+      let response; // Define response outside try block to access in catch
       try {
-        const response = await fetch(API_URL);
+        response = await fetch(API_URL); // Assign to outer response variable
         if (!response.ok) {
           let errorMsg = `HTTP error! status: ${response.status}`;
-          try {
-            const errorData = await response.json();
-            errorMsg = errorData.message || errorMsg;
-          } catch (_) { /* Ignore if response isn't JSON */ }
+          // Check if response exists before trying to parse
+          if (response) {
+            try {
+              const errorData = await response.json();
+              errorMsg = errorData.message || errorMsg;
+            // *** FIXED: Changed catch(_) to catch(parseError) ***
+            } catch (parseError) {
+              /* Ignore if error response isn't JSON, use status code error */
+            }
+          }
           throw new Error(errorMsg);
         }
         const data: Country[] = await response.json();
@@ -99,12 +106,11 @@ export default function DashboardPage() {
           regions={REGIONS}
         />
 
-        {/* Results Area - Updated Render Logic */}
-        <div className="mt-8"> {/* Added margin-top for spacing */}
+        {/* Results Area */}
+        <div className="mt-8">
           {isLoading && (
             // Render skeleton grid while loading
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
-              {/* Create an array of specified length and map over it */}
               {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
                 <SkeletonCard key={index} />
               ))}
