@@ -51,7 +51,8 @@ export default function DashboardPage() {
             try {
               const errorData = await response.json();
               errorMsg = errorData.message || errorMsg;
-            // *** FIXED: Changed catch(parseError) back to catch(_) for unused var ***
+            // *** FIXED: Added ESLint disable comment for the specific line ***
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (_) { // Use underscore prefix for intentionally unused variable
               /* Ignore if error response isn't JSON, use status code error */
             }
