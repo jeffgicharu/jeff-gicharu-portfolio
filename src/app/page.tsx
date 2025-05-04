@@ -1,7 +1,11 @@
 // src/app/page.tsx
+// Added Project 2 (Country Explorer) to the projects array
+
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Ensure Image is imported
+import Image from 'next/image';
+
+// Import icons
 import { FaHtml5, FaCss3Alt, FaReact, FaGitAlt, FaGithub, FaFigma, FaLinkedin } from 'react-icons/fa';
 import { IoLogoJavascript } from 'react-icons/io5';
 import { TbBrandNextjs, TbCode, TbDevices, TbLink, TbBolt, TbAccessible, TbArrowRight, TbExternalLink } from 'react-icons/tb';
@@ -12,7 +16,7 @@ import { MdEmail } from 'react-icons/md';
 export default function Home() {
 
   // --- Data Definitions ---
-  // Skills Data with Icons
+  // Skills Data
   const skills: { [category: string]: { name: string; icon: React.ComponentType<{ className?: string }> }[] } = {
     Languages: [ { name: "JavaScript (ES6+)", icon: IoLogoJavascript }, { name: "HTML5", icon: FaHtml5 }, { name: "CSS3", icon: FaCss3Alt } ],
     Frameworks: [ { name: "React", icon: FaReact }, { name: "Next.js", icon: TbBrandNextjs } ],
@@ -21,17 +25,24 @@ export default function Home() {
     Concepts: [ { name: "Responsive Design", icon: TbDevices }, { name: "API Integration", icon: TbLink }, { name: "Version Control", icon: FaGitAlt }, { name: "Basic Accessibility", icon: TbAccessible }, { name: "Web Performance Basics", icon: TbBolt } ]
   };
 
-  // Projects Data
+  // Projects Data - Added Country Explorer
   const projects = [
     {
       title: "Personal Portfolio Website",
       description: "This website! Built with Next.js, TypeScript, and Tailwind CSS to showcase my skills and projects. Features responsive design and clean code.",
-      imageUrl: "/images/portfolio-screenshot.png", // Ensure this image exists in public/images
+      imageUrl: "/images/portfolio-screenshot.png", // Screenshot of portfolio
       liveUrl: "https://jeff-gicharu-portfolio-3ip5.vercel.app", // Your live URL
       repoUrl: "https://github.com/jeffgicharu/jeff-gicharu-portfolio",
       tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     },
-    // Add Project 2 placeholder here later if needed
+    { // *** Added Project 2 Details ***
+      title: "Interactive Country Explorer",
+      description: "A responsive dashboard fetching data from the REST Countries API. Allows users to search countries by name and filter by region.",
+      imageUrl: "/images/dashboard-screenshot.png", // Path to your dashboard screenshot
+      liveUrl: "/dashboard", // Link to the dashboard page within this site
+      repoUrl: "https://github.com/jeffgicharu/jeff-gicharu-portfolio/blob/main/src/app/dashboard/page.tsx", // Link to relevant code on GitHub
+      tags: ["Next.js", "React", "TypeScript", "REST API", "Tailwind CSS"]
+    }
   ];
 
   // Contact Info
@@ -69,17 +80,15 @@ export default function Home() {
         className="w-full py-20 md:py-32 px-4 bg-white dark:bg-gray-800"
       >
         <div className="container mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
-          {/* Image Column - Updated */}
+          {/* Image Column */}
           <div className="md:col-span-1 flex justify-center">
-            {/* Replaced placeholder div with Next/Image */}
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden shadow-lg">
               <Image
-                // *** IMPORTANT: Update src if your image name/path is different ***
-                src="/images/jeff-headshot.jpg"
+                src="/images/jeff-headshot.jpg" // Ensure this image exists
                 alt="Jeff Gicharu Headshot"
-                layout="fill" // Fill the container
-                objectFit="cover" // Cover the area, maintain aspect ratio
-                priority // Optional: Load image sooner if it's above the fold
+                layout="fill"
+                objectFit="cover"
+                priority
               />
             </div>
           </div>
@@ -130,7 +139,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Projects Section - Now maps over multiple projects */}
       <section
         id="projects"
         className="w-full py-20 md:py-32 px-4 bg-white dark:bg-gray-800"
@@ -139,42 +148,54 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-16 text-gray-900 dark:text-white">
             Featured Projects
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12">
-            {projects.map((project) => (
-              <div key={project.title} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:border-teal-300 dark:hover:border-teal-600">
-                <div className="relative w-full h-52 sm:h-60 overflow-hidden">
-                   <Image
-                     src={project.imageUrl}
-                     alt={`${project.title} screenshot`}
-                     layout="fill"
-                     objectFit="cover"
-                     className="transition-transform duration-500 group-hover:scale-105"
-                   />
-                </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-semibold mb-3 text-gray-800 dark:text-white">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-5 flex-grow text-left">{project.description}</p>
-                  {/* Tech Tags */}
-                  <div className="mb-5 flex flex-wrap gap-2">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="inline-block bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-300 rounded-full px-3 py-1 text-xs font-medium">
-                        {tag}
-                      </span>
-                    ))}
+          {/* Check if projects array is empty */}
+          {projects.length === 0 ? (
+              <p className="text-gray-600 dark:text-gray-400">More projects coming soon!</p>
+          ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12">
+                {projects.map((project) => (
+                  <div key={project.title} className="bg-gray-50 dark:bg-gray-800/50 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-2xl hover:border-teal-300 dark:hover:border-teal-600">
+                    <div className="relative w-full h-52 sm:h-60 overflow-hidden">
+                       <Image
+                         src={project.imageUrl}
+                         alt={`${project.title} screenshot`}
+                         layout="fill"
+                         objectFit="cover"
+                         className="transition-transform duration-500 group-hover:scale-105"
+                       />
+                    </div>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h3 className="text-2xl font-semibold mb-3 text-gray-800 dark:text-white">{project.title}</h3>
+                      <p className="text-gray-600 dark:text-gray-400 mb-5 flex-grow text-left">{project.description}</p>
+                      {/* Tech Tags */}
+                      <div className="mb-5 flex flex-wrap gap-2">
+                        {project.tags.map(tag => (
+                          <span key={tag} className="inline-block bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-300 rounded-full px-3 py-1 text-xs font-medium">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      {/* Links */}
+                      <div className="mt-auto flex justify-start space-x-5">
+                        {/* Use Link for internal routes, <a> for external */}
+                        {project.liveUrl.startsWith('/') ? (
+                           <Link href={project.liveUrl} className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-200 font-medium transition-colors duration-200 group/link">
+                             Live Demo <TbExternalLink className="ml-1.5 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+                           </Link>
+                        ) : (
+                           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-200 font-medium transition-colors duration-200 group/link">
+                             Live Demo <TbExternalLink className="ml-1.5 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+                           </a>
+                        )}
+                        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-200 font-medium transition-colors duration-200 group/link">
+                          Source Code <FaGithub className="ml-1.5 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5" />
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  {/* Links */}
-                  <div className="mt-auto flex justify-start space-x-5">
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-200 font-medium transition-colors duration-200 group/link">
-                      Live Demo <TbExternalLink className="ml-1.5 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5" />
-                    </a>
-                    <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-200 font-medium transition-colors duration-200 group/link">
-                      Source Code <FaGithub className="ml-1.5 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5" />
-                    </a>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+          )}
         </div>
       </section>
 
