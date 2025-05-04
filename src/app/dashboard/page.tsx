@@ -51,8 +51,8 @@ export default function DashboardPage() {
             try {
               const errorData = await response.json();
               errorMsg = errorData.message || errorMsg;
-            // *** FIXED: Changed catch(_) to catch(parseError) ***
-            } catch (parseError) {
+            // *** FIXED: Changed catch(parseError) back to catch(_) for unused var ***
+            } catch (_) { // Use underscore prefix for intentionally unused variable
               /* Ignore if error response isn't JSON, use status code error */
             }
           }
